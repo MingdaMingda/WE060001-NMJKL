@@ -1,0 +1,19 @@
+{# I: info(ArticlePackage) #}
+{# #}
+<xml>
+  <ToUserName><![CDATA[{{ info['to_user_name'] }}]]></ToUserName>
+  <FromUserName><![CDATA[{{ info['from_user_name'] }}]]></FromUserName>
+  <CreateTime>{{ info['timestamp'] }}</CreateTime>
+  <MsgType><![CDATA[news]]></MsgType>
+  <ArticleCount>{{ info['article_count'] }}</ArticleCount>
+  <Articles>
+  {% for article in info['articles'] %}
+    <item>
+      <Title><![CDATA[{% raw article['title'] %}]]></Title> 
+      <Description><![CDATA[{% raw article['description'] %}]]></Description>
+      <PicUrl><![CDATA[{% raw article['pic_url'] %}]]></PicUrl>
+      <Url><![CDATA[{% raw article['url'] %}]]></Url>
+    </item>
+  {% end %}
+</Articles>
+</xml>
