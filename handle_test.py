@@ -2,19 +2,20 @@
 # -*- coding: utf-8 -*-
 
 import sys
-import hashlib
 import logging
-import time
-import types
-
-import lxml
-import xmltodict
 import tornado.web
+
+import io_weixin_auth
 
 class Test2Handler(tornado.web.RequestHandler):
     def get(self):
         logging.info('AAA: IN test-get')
-        self.render('test_001.html')
+
+        code = self.get_argument('code', None)
+        token_info = io_weixin_auth.get_user_token_by_code(code)
+        user_info = io_weixin_auth.get_user_info_by_token_info(token_info)
+
+        self.render('test_001.html', info=user_info)
 
     def post(self):
         logging.info('AAA: IN test-post')

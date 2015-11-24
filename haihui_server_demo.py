@@ -25,6 +25,7 @@ import sys
 import logging
 
 from io_weixin import IO_Weixin_ValidateHandler
+from handle_test import Test2Handler
 from tornado.options import define, options
 from tornado import gen
 
@@ -65,12 +66,13 @@ def main():
         [
             (r"/", LoginHandler),
             (r"/io/weixin/", IO_Weixin_ValidateHandler),
+            (r"/test/", Test2Handler),
             (r"/auth/login", LoginHandler),
             (r"/auth/logout", LogoutHandler),
         ],
         template_path=os.path.join(os.path.dirname(__file__), "templates"),
         static_path=os.path.join(os.path.dirname(__file__), "static"),
-        xsrf_cookies=True,
+        #xsrf_cookies=True,
         cookie_secret="WeLcOmToHaIhUi",
         login_url="/auth/login",
         debug=True,

@@ -1,9 +1,19 @@
+{# I: info(user_info) #}
+
 <doctype html>
 <html>
   <head>
   </head>
   <body>
-    <span>just test~~</span>
+    <section>
+    {% if info is None %}
+      <div>you are a guest...</div>
+    {% else %}
+      <div>hi~ {{ info['nickname'] }}</div>
+      <div><img src="{{ info['headimgurl'] }}"></img></div>
+      <div>id: {{ info['openid'] }}</div>
+    {% end %}
+    </section>
   </body>
 </html>
 
